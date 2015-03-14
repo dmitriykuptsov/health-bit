@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/app.css">
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+		<script src="js/app.js"></script>
+	</head>
+
+	<body>
+		<div class="header">
+			<p>HealthBit</p>
+		</div>
+
+		<div class="content">
+			<!--div class="clearfix visible-xs"></div -->
+
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="sparkline-dashboard" id="sparkline-pulse"></div>
+					<div class="sparkline-dashboard-info">
+						<span class="txt-primary">Pulse</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="sparkline-dashboard" id="sparkline-body-temp"></div>
+					<div class="sparkline-dashboard-info">
+						<span class="txt-info">Body temp.</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="sparkline-dashboard" id="sparkline-amb-temp"></div>
+					<div class="sparkline-dashboard-info">
+						<span>Ambience temp.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer">
+			<p>Copyright, 2015</p>
+		</div>
+
+		
+		<script lang="JavaScript">
+			loop();
+		</script>
+	</body>
+</html>

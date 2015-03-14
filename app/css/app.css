@@ -1,0 +1,26 @@
+body {
+    background: rgb(0, 204, 255);
+    background: rgba(0, 204, 255, .5);
+}
+
+.header {
+	font-family: "Source Sans Pro";
+	color: rgb(0, 204, 255);
+	font-size: 3em;
+	font-weight: bold;
+	text-align: center;
+	height: 40px;
+	background-color: white;
+}
+
+.content {
+	text-align: center;
+	font-family: "Source Sans Pro";
+	color: white;
+}
+
+.footer {
+	text-align: center;
+	font-family: "Source Sans Pro";
+	font-weight: bold;
+}
