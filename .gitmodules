@@ -1,0 +1,3 @@
+[submodule "server/spark-protocol"]
+	path = server/spark-protocol
+	url = git@github.com:dmitriykuptsov/spark-protocol.git
