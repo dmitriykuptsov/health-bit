@@ -22,7 +22,8 @@ $ cd core-firmware/build
 $ make
 ```
 
-Flush the device:
+To flush the device follow the instructions at:
 
-TBD
+To setup wifi follow the instructions at:
+
 
