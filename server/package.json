@@ -1,0 +1,31 @@
+{
+    "name": "health-bit-server",
+    "version": "0.0.1",
+    "main": "./app.js",
+    "description": "Simple app server which listens the spark-core and sends readings to connected clients",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dmitriykuptsov/health-bit"
+    },
+    "homepage": "https://github.com/dmitriykuptsov/health-bit",
+    "bugs": "https://github.com/dmitriykuptsov/health-bit/issues",
+    "author": {
+        "name": "Dmitriy Kuptsov",
+        "email": "dmitriy.kuptsov@gmail.com",
+        "url": "https://vizly.net/"
+    },
+    "license": "LGPL-3.0",
+    "dependencies": {
+        "express": "~4.12.2",
+        "socket.io": "~1.3.5",
+        "redis": "~0.12.1",
+        "buffer-crc32": "~0.2.3",
+        "h5.buffers": "~0.1.1",
+        "h5.coap": "git+https://github.com/morkai/h5.coap.git",
+        "hogan.js": "*",
+        "ursa": "*",
+        "when": "*",
+        "moment": "*",
+        "xtend": "*"
+    }
+}
