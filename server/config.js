@@ -1,4 +1,9 @@
-exports.config = {
-	port: 80,
-	host: 'localhost'
+var configuration = {	
+	host: 'localhost',
+	spark_port: 5683,
+	http_port: 80,
+	sparkServerKeyFile: 'server.pem',
+	coreKeysDir: 'keys/'
 }
+
+exports.config = configuration;
