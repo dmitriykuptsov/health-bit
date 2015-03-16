@@ -1,3 +1,12 @@
 [submodule "server/spark-protocol"]
 	path = server/spark-protocol
 	url = git@github.com:dmitriykuptsov/spark-protocol.git
+[submodule "controller/core-firmware"]
+	path = controller/core-firmware
+	url = git@github.com:dmitriykuptsov/core-firmware.git
+[submodule "controller/core-communication-lib"]
+	path = controller/core-communication-lib
+	url = git@github.com:dmitriykuptsov/core-communication-lib.git
+[submodule "controller/core-common-lib"]
+	path = controller/core-common-lib
+	url = git@github.com:dmitriykuptsov/core-common-lib.git
