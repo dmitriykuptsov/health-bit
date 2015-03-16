@@ -4,7 +4,7 @@
 Modify the firmware to point to application server. For development purposes you can use localhost ip address (reachable within the local area network):
 
 ```
-$ cd spark-firmware 
+$ cd core-firmware 
 $ sed -i.bak "s/device.spark.io/192.168.1.2/g" src/spark_utilities.cpp
 ```
 
