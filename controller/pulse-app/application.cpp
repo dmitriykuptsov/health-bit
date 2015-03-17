@@ -24,12 +24,21 @@
 
 /* Includes ------------------------------------------------------------------*/  
 #include "application.h"
-double pulse = 0;
+int pulse   = 0;
+int counter = 0;
+long lag    = 0;
+
+#define SAMPLES_PER_SECOND 1000
+#define SAMPLES_PER_MINUTE SAMPLES_PER_SECOND * 60
+#define DELAY 1000 / SAMPLES_PER_SECOND
+#define MAX_VOLTAGE 3.3
+#define THRESHOLD 3.0
+
 /* This function is called once at start up ----------------------------------*/
 void setup()
 {
 	//Register all functions
-	Spark.variable("pulse", &pulse, DOUBLE);
+	//Spark.variable("pulse", &pulse, DOUBLE);
 	//Connect to analog input
 	pinMode(A7, INPUT);
 }
@@ -37,10 +46,37 @@ void setup()
 /* This function loops forever --------------------------------------------*/
 void loop()
 {
-	int reading = 0;
-	double voltage = 0.0;
-	reading = analogRead(A7);
-	voltage = (reading * 3.3) / 4095;
-	//Adapt this
-	pulse = floor((voltage - 0.5) * 100);
+  int reading = 0;
+  double voltage = 0.0;
+  reading = analogRead(A7);
+  voltage = (reading * MAX_VOLTAGE) / 4095;
+  if (voltage >= THRESHOLD) {
+    pulse++;
+  }
+
+  counter++;
+  //Reset counters 
+  if (counter == SAMPLES_PER_MINUTE) {
+    char buffer[11];
+    sprintf(buffer, "%d", pulse);
+    //Check if public function is a blocking function
+    //If so, then there will be a lag, so we need to 
+    //consider this
+    //Publishing can occur at most once per second
+    //We publish once per second
+    long start = millis();
+    Spark.publish("pulse", buffer);
+    long end   = millis();
+    lag = end - start;
+    counter = 0;
+    pulse   = 0;
+  }
+
+  //Adapt this
+  if (lag > DELAY) {
+    lag -= DELAY;
+  } else {
+    delay(DELAY - lag);
+    lag = 0;
+  }
 }
