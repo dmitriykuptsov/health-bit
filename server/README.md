@@ -18,9 +18,10 @@ $ spark identify
 Save id of the core. Put spark into DFU mode and save the keys:
 
 ```
-$ id='spark id'
+$ id=`spark identify | awk -F" " '{print $5}'`
 $ cd keys
-$ spark keys save $id
+$ spark keys save $id.pub
+$ mv $id.pub && rm $id.pub
 ```
 
 Load server public key into spark core:
