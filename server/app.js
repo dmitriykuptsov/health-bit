@@ -26,6 +26,10 @@ var port    = settings.http_port || 80;
 // Application server configuration
 var app     = express();
 
+// Core simple in memory database
+var _allCoresByID = {};
+var _attribsByID  = {};
+
 //
 //  Load the provided key, or generate one
 //
@@ -73,16 +77,14 @@ var sparkserver = net.createServer(function (socket) {
 	core.on('ready', function () {
 		console.log("Core online!");
 		var coreid = this.getHexCoreID();
-		/*
-		that._allCoresByID[coreid] = core;
-		that._attribsByID[coreid] = that._attribsByID[coreid] || {
+		_allCoresByID[coreid] = core;
+		_attribsByID[coreid] = _attribsByID[coreid] || {
 			coreID: coreid,
 			name: null,
 			ip: this.getRemoteIPAddress(),
 			product_id: this.spark_product_id,
 			firmware_version: this.product_firmware_version
 		};
-		*/
 	});
 
 	core.on('disconnect', function (msg) {
