@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file    application.cpp
- * @authors  Dmitriy Kuptsov
+ * @authors Dmitriy Kuptsov
  * @date    16-March-2015
  * @brief   Pulse app
  ******************************************************************************
@@ -24,7 +24,7 @@
 
 /* Includes ------------------------------------------------------------------*/  
 #include "application.h"
-int pulse = 0;
+double pulse = 0;
 /* This function is called once at start up ----------------------------------*/
 void setup()
 {
