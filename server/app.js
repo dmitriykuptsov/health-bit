@@ -11,9 +11,10 @@ var ursa     = require('ursa');
 var when     = require('when');
 var path     = require('path');
 
-var SparkCore = require('./spark-protocol/js/clients/SparkCore.js');
-var CryptoLib = require('./spark-protocol/js/lib/ICrypto.js');
-var spark     = require("./spark-protocol/js/clients/SparkCore.js");
+var SparkCore  = require('./spark-protocol/js/clients/SparkCore.js');
+var CryptoLib  = require('./spark-protocol/js/lib/ICrypto.js');
+var spark      = require("./spark-protocol/js/clients/SparkCore.js");
+var CoreController = require("./controller.js");
 
 global.settings = require('./config').config;
 
@@ -47,7 +48,6 @@ if (!fs.existsSync(settings.sparkServerKeyFile)) {
 	//TODO: fs.writeFileSync(derFilename, keys.toPrivatePem('binary'));
 }
 
-
 //
 //  Load our server key
 //
@@ -57,23 +57,13 @@ CryptoLib.loadServerKeys(
 	settings.sparkServerKeyFile
 );
 
-//Configure web socket
-//var socket  = io.listen(app);
-
-// Configure routes
-app.get('/measurement/:id', routes.get_last_measurement);
-
-
-
 // Start TCP socket to listen to Spark Core devices
 var sparkserver = net.createServer(function (socket) {
-
 	console.log('Received connection from the core....');
-
+	var conn_id = Math.floor(Math.random() * 1000);
 	var core = new SparkCore();
 	core.socket = socket;
 	core.startupProtocol();
-
 	core.on('ready', function () {
 		console.log("Core online!");
 		var coreid = this.getHexCoreID();
@@ -88,10 +78,21 @@ var sparkserver = net.createServer(function (socket) {
 	});
 
 	core.on('disconnect', function (msg) {
-		logger.log("Session ended for " + connId);
+		console.log("Session ended for " + connId);
 		delete _cores[key];
 	});
 
+	handler = function (sender, msg) {
+		process.nextTick(function () {
+			try {
+				console.log("Got message from core");
+			} catch (ex) {
+				console.error("listenFor error: " + ex, (ex) ? ex.stack : '');
+			}
+		});
+	};
+
+	core.on(conn_id, handler);
 });
 
 sparkserver.listen(settings.spark_port, function () {
