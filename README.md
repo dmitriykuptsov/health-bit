@@ -1,6 +1,5 @@
-# HealthBit 
+# Device connectivity
 
-An body pulse and temperature monitoring application. 
 
 ## Folder structure
 
