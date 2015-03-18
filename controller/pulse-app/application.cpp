@@ -24,11 +24,12 @@
 
 /* Includes ------------------------------------------------------------------*/  
 #include "application.h"
-int pulse   = 0;
-int counter = 0;
-long lag    = 0;
+int pulse    = 0;
+int last_val = 0;
+int counter  = 0;
+long lag     = 0;
 
-#define SAMPLES_PER_SECOND 1000
+#define SAMPLES_PER_SECOND 10
 #define SAMPLES_PER_MINUTE SAMPLES_PER_SECOND * 60
 #define DELAY 1000 / SAMPLES_PER_SECOND
 #define MAX_VOLTAGE 3.3
@@ -51,7 +52,12 @@ void loop()
   reading = analogRead(A7);
   voltage = (reading * MAX_VOLTAGE) / 4095;
   if (voltage >= THRESHOLD) {
-    pulse++;
+    if (last_val == 0) {
+      pulse++;
+      last_val = 1;
+    } 
+  } else {
+    last_val = 0;
   }
 
   counter++;
