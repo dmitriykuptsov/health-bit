@@ -1,4 +1,4 @@
-# Health-bit server
+# simple app server
 
 ## Configure core
 
